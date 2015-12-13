@@ -14,12 +14,9 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
+        /* Tests to make sure that the
          * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
+         * empty.
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
@@ -27,7 +24,7 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* Loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
@@ -41,7 +38,7 @@ $(function() {
             };
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* Loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
@@ -57,15 +54,16 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* Test suite named "The Menu" */
     describe('The Menu', function() {
+
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
         it('is hidden by default', function() {
-
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
 
         /* TODO: Write a test that ensures the menu changes
@@ -73,6 +71,19 @@ $(function() {
          * should have two expectations: does the menu display when
          * clicked and does it hide when clicked again.
          */
+        it('displays when clicked, hides when clicked again', function() {
+            /* First check to make sure menu is closed */
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+            /* Now trigger the menu */
+            $('.menu-icon-link').trigger('click');
+            /* Now expect to see menu-hidden to be visible */
+            expect($('body').hasClass('menu-hidden')).toBe(false);
+
+            /* Now confirm that when menu is clicked again, it hides */
+            $('.menu-icon-link').trigger('click');
+            /* Now expect menu-hidden to hide */
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+        });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
